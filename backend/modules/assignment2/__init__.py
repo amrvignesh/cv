@@ -185,23 +185,3 @@ def deblur_image():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-# Commit 63 - Development update
-
-# Commit 87 - Development update
-
-# Commit 111 - Development update
-
-# Commit 119 - Development update
-
-# Development update 147 - 2025-12-03
-
-# Development update 149 - 2025-12-03
-
-# Development update 159 - 2025-12-03
-
-# Development update 192 - 2025-12-03
-
-# Development update 222 - 2025-12-03
-
-# Development update 223 - 2025-12-03

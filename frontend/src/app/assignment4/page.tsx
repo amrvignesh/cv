@@ -235,25 +235,3 @@ export default function Assignment4() {
         </div>
     );
 }
-
-# Commit 21 - Development update
-
-# Commit 48 - Development update
-
-# Commit 64 - Development update
-
-# Commit 68 - Development update
-
-# Commit 79 - Development update
-
-# Commit 96 - Development update
-
-# Commit 98 - Development update
-
-# Development update 151 - 2025-12-03
-
-# Development update 174 - 2025-12-03
-
-# Development update 190 - 2025-12-03
-
-# Development update 196 - 2025-12-03

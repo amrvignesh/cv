@@ -324,23 +324,3 @@ def sift_demo():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-# Commit 4 - Development update
-
-# Commit 13 - Development update
-
-# Commit 54 - Development update
-
-# Commit 57 - Development update
-
-# Commit 94 - Development update
-
-# Commit 107 - Development update
-
-# Commit 116 - Development update
-
-# Commit 144 - Development update
-
-# Development update 185 - 2025-12-03
-
-# Development update 225 - 2025-12-03

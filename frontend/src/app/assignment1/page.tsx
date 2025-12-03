@@ -1,6 +1,19 @@
 'use client';
 
 import { useState, useRef, useEffect, MouseEvent } from 'react';
+import EXIF from 'exif-js';
+
+const SENSOR_SIZES = [
+    { name: 'Full Frame (35mm)', width: 36.0 },
+    { name: 'APS-C (Canon)', width: 22.3 },
+    { name: 'APS-C (Nikon/Sony)', width: 23.5 },
+    { name: 'Micro 4/3', width: 17.3 },
+    { name: '1" Type', width: 13.2 },
+    { name: '1/2.3" (Compact/Drone)', width: 6.17 },
+    { name: 'iPhone Main (1/2.55")', width: 5.1 },
+    { name: 'iPhone Pro Main (1/1.28")', width: 9.8 },
+    { name: 'Google Pixel Main (1/1.31")', width: 9.6 },
+];
 
 export default function Assignment1() {
     const [mode, setMode] = useState<'calib' | 'measure'>('calib');
@@ -9,6 +22,7 @@ export default function Assignment1() {
     const [image, setImage] = useState<HTMLImageElement | null>(null);
     const [preview, setPreview] = useState<string | null>(null);
     const [imgDims, setImgDims] = useState<{ w: number, h: number } | null>(null);
+    const [exifData, setExifData] = useState<{ focalLength?: number, make?: string, model?: string } | null>(null);
 
     // Points
     const [calibPoints, setCalibPoints] = useState<{ x: number, y: number }[]>([]);
@@ -20,6 +34,7 @@ export default function Assignment1() {
     const [testDist, setTestDist] = useState<string>('32');
     const [truthSize, setTruthSize] = useState<string>('');
     const [units, setUnits] = useState<string>('cm');
+    const [sensorWidth, setSensorWidth] = useState<number>(36.0); // Default Full Frame
 
     // Results
     const [fpx, setFpx] = useState<number | null>(null);
@@ -95,8 +110,6 @@ export default function Assignment1() {
                 // Draw Distance Label
                 const midX = (p1.x + p2.x) / 2;
                 const midY = (p1.y + p2.y) / 2;
-                const pxDist = Math.hypot(p1.x - p2.x, p1.y - p2.y); // Canvas pixels
-
                 // Real pixels (on original image)
                 const realPx = Math.hypot(
                     (points[0].x - points[1].x) * image.width,
@@ -122,8 +135,22 @@ export default function Assignment1() {
 
     const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files?.[0]) {
-            const url = URL.createObjectURL(e.target.files[0]);
+            const file = e.target.files[0];
+            const url = URL.createObjectURL(file);
             setPreview(url);
+
+            // Read EXIF
+            EXIF.getData(file as any, function (this: any) {
+                const focalLength = EXIF.getTag(this, 'FocalLength');
+                const make = EXIF.getTag(this, 'Make');
+                const model = EXIF.getTag(this, 'Model');
+                setExifData({
+                    focalLength: focalLength ? Number(focalLength) : undefined,
+                    make,
+                    model
+                });
+            });
+
             const img = new Image();
             img.onload = () => {
                 setImage(img);
@@ -222,6 +249,16 @@ export default function Assignment1() {
         alert(`Calibrated! f_px = ${f.toFixed(2)}`);
     };
 
+    const autoCalibrate = () => {
+        if (!exifData?.focalLength || !image) return alert("Missing EXIF Focal Length");
+
+        // f_px = (f_mm * img_w_px) / sensor_w_mm
+        const f = (exifData.focalLength * image.width) / sensorWidth;
+        setFpx(f);
+        localStorage.setItem('fpx', f.toString());
+        alert(`Auto-Calibrated from EXIF! f_px = ${f.toFixed(2)}`);
+    };
+
     const measure = () => {
         if (measurePoints.length !== 2 || !image) return alert("Select 2 points");
         if (!fpx) return alert("Calibrate first!");
@@ -259,7 +296,7 @@ export default function Assignment1() {
                 <header className="mb-8 flex justify-between items-center">
                     <div>
                         <h1 className="text-3xl font-bold text-gray-900">Perspective Measurement</h1>
-                        <p className="text-gray-500">Assignment 1 • Robust Implementation</p>
+                        <p className="text-gray-500">Assignment 1 • Advanced Metadata & Calibration</p>
                     </div>
                     <div className="flex gap-2">
                         <span className="badge bg-indigo-100 text-indigo-800">Pinhole Model</span>
@@ -285,6 +322,13 @@ export default function Assignment1() {
                                 <div className="relative aspect-video bg-black rounded-lg overflow-hidden">
                                     <video ref={videoRef} className="w-full h-full object-cover" autoPlay muted />
                                     <button onClick={captureWebcam} className="absolute bottom-4 left-1/2 -translate-x-1/2 btn btn-danger">Capture Frame</button>
+                                </div>
+                            )}
+                            {exifData && (
+                                <div className="text-xs bg-gray-50 p-2 rounded border border-gray-200">
+                                    <div className="font-semibold text-gray-700 mb-1">EXIF Data Found:</div>
+                                    <div>Camera: {exifData.make} {exifData.model}</div>
+                                    <div>Focal Length: {exifData.focalLength ? `${exifData.focalLength}mm` : 'N/A'}</div>
                                 </div>
                             )}
                         </div>
@@ -317,15 +361,46 @@ export default function Assignment1() {
                             <h2 className="label">3. Parameters</h2>
                             {mode === 'calib' ? (
                                 <>
-                                    <div>
-                                        <label className="text-xs text-gray-500">Distance (D_calib)</label>
-                                        <input type="number" value={calibDist} onChange={e => setCalibDist(e.target.value)} className="input-field" />
+                                    <div className="border-b border-gray-100 pb-4 mb-2">
+                                        <h3 className="text-xs font-semibold text-gray-700 mb-2">Manual Calibration</h3>
+                                        <div className="space-y-2">
+                                            <div>
+                                                <label className="text-xs text-gray-500">Distance (D_calib)</label>
+                                                <input type="number" value={calibDist} onChange={e => setCalibDist(e.target.value)} className="input-field" />
+                                            </div>
+                                            <div>
+                                                <label className="text-xs text-gray-500">Known Size (L_ref)</label>
+                                                <input type="number" value={calibSize} onChange={e => setCalibSize(e.target.value)} className="input-field" />
+                                            </div>
+                                            <button onClick={calibrate} className="btn btn-primary w-full">Calibrate from Points</button>
+                                        </div>
                                     </div>
+
                                     <div>
-                                        <label className="text-xs text-gray-500">Known Size (L_ref)</label>
-                                        <input type="number" value={calibSize} onChange={e => setCalibSize(e.target.value)} className="input-field" />
+                                        <h3 className="text-xs font-semibold text-gray-700 mb-2">Auto Calibration (EXIF)</h3>
+                                        <div className="space-y-2">
+                                            <div>
+                                                <label className="text-xs text-gray-500">Sensor Size</label>
+                                                <select
+                                                    value={sensorWidth}
+                                                    onChange={e => setSensorWidth(parseFloat(e.target.value))}
+                                                    className="input-field"
+                                                >
+                                                    {SENSOR_SIZES.map(s => (
+                                                        <option key={s.name} value={s.width}>{s.name} ({s.width}mm)</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                            <button
+                                                onClick={autoCalibrate}
+                                                disabled={!exifData?.focalLength}
+                                                className="btn btn-secondary w-full disabled:opacity-50"
+                                            >
+                                                Auto-Calibrate from EXIF
+                                            </button>
+                                        </div>
                                     </div>
-                                    <button onClick={calibrate} className="btn btn-primary w-full">Calibrate f_px</button>
+
                                     {fpx && <div className="text-center text-sm text-green-600 font-medium mt-2">f_px: {fpx.toFixed(2)}</div>}
                                 </>
                             ) : (
@@ -393,43 +468,3 @@ export default function Assignment1() {
         </div>
     );
 }
-
-# Commit 34 - Development update
-
-# Commit 36 - Development update
-
-# Commit 42 - Development update
-
-# Commit 75 - Development update
-
-# Commit 76 - Development update
-
-# Commit 84 - Development update
-
-# Commit 103 - Development update
-
-# Commit 106 - Development update
-
-# Commit 120 - Development update
-
-# Commit 124 - Development update
-
-# Commit 135 - Development update
-
-# Commit 141 - Development update
-
-# Development update 158 - 2025-12-03
-
-# Development update 164 - 2025-12-03
-
-# Development update 171 - 2025-12-03
-
-# Development update 176 - 2025-12-03
-
-# Development update 179 - 2025-12-03
-
-# Development update 193 - 2025-12-03
-
-# Development update 213 - 2025-12-03
-
-# Development update 218 - 2025-12-03

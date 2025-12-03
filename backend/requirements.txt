@@ -5,35 +5,3 @@ numpy
 werkzeug
 gunicorn
 Pillow
-
-# Commit 5 - Development update
-
-# Commit 31 - Development update
-
-# Commit 74 - Development update
-
-# Commit 100 - Development update
-
-# Commit 108 - Development update
-
-# Commit 110 - Development update
-
-# Commit 113 - Development update
-
-# Commit 128 - Development update
-
-# Commit 140 - Development update
-
-# Commit 143 - Development update
-
-# Commit 145 - Development update
-
-# Development update 148 - 2025-12-03
-
-# Development update 198 - 2025-12-03
-
-# Development update 206 - 2025-12-03
-
-# Development update 216 - 2025-12-03
-
-# Development update 219 - 2025-12-03

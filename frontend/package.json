@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@types/exif-js": "^2.3.1",
+    "exif-js": "^2.3.0",
     "jszip": "^3.10.1",
     "next": "16.0.6",
     "react": "19.2.0",
@@ -25,35 +27,3 @@
     "typescript": "^5"
   }
 }
-
-# Commit 15 - Development update
-
-# Commit 40 - Development update
-
-# Commit 52 - Development update
-
-# Commit 55 - Development update
-
-# Commit 86 - Development update
-
-# Development update 143 - 2025-12-03
-
-# Development update 144 - 2025-12-03
-
-# Development update 163 - 2025-12-03
-
-# Development update 172 - 2025-12-03
-
-# Development update 178 - 2025-12-03
-
-# Development update 184 - 2025-12-03
-
-# Development update 194 - 2025-12-03
-
-# Development update 203 - 2025-12-03
-
-# Development update 204 - 2025-12-03
-
-# Development update 214 - 2025-12-03
-
-# Development update 221 - 2025-12-03
