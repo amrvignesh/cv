@@ -2,7 +2,7 @@ services:
   - type: web
     name: cv-backend
     runtime: docker
-    dockerfilePath: ./Dockerfile.backend
+    rootDir: backend
     envVars:
       - key: PORT
         value: 10000
@@ -11,7 +11,7 @@ services:
   - type: web
     name: cv-frontend
     runtime: docker
-    dockerfilePath: ./Dockerfile.frontend
+    rootDir: frontend
     envVars:
       - key: NEXT_PUBLIC_API_URL
         fromService:
