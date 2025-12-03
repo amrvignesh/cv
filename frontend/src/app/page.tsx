@@ -7,42 +7,48 @@ export default function Home() {
       title: "Perspective Measurement",
       desc: "Measure real-world dimensions using camera geometry.",
       path: "/assignment1",
-      color: "from-blue-500 to-cyan-500"
+      color: "from-blue-500 to-cyan-500",
+      video: "/recordings/a1.mov"
     },
     {
       id: 2,
       title: "Matching & Deblurring",
       desc: "Template matching and Fourier-based image deblurring.",
       path: "/assignment2",
-      color: "from-purple-500 to-pink-500"
+      color: "from-purple-500 to-pink-500",
+      video: "/recordings/a2.mov"
     },
     {
       id: 3,
       title: "Image Analysis",
       desc: "Edge detection, gradients, and feature extraction.",
       path: "/assignment3",
-      color: "from-green-500 to-emerald-500"
+      color: "from-green-500 to-emerald-500",
+      video: "/recordings/a3.mov"
     },
     {
       id: 4,
       title: "Panorama & SIFT",
       desc: "Image stitching and SIFT feature matching.",
       path: "/assignment4",
-      color: "from-orange-500 to-red-500"
+      color: "from-orange-500 to-red-500",
+      video: "/recordings/a4.mov"
     },
     {
       id: 5,
       title: "Real-Time Tracking",
       desc: "Object tracking with OpenCV and SAM2.",
       path: "/assignment5-6",
-      color: "from-indigo-500 to-violet-500"
+      color: "from-indigo-500 to-violet-500",
+      video: "/recordings/a5-6.mov"
     },
     {
       id: 7,
       title: "Stereo & Pose",
       desc: "Stereo vision and MediaPipe pose estimation.",
       path: "/assignment7",
-      color: "from-fuchsia-500 to-rose-500"
+      color: "from-fuchsia-500 to-rose-500",
+      video: "/recordings/a7.mov"
     }
   ];
 
@@ -61,12 +67,24 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {assignments.map((a) => (
             <Link href={a.path} key={a.id} className="group">
-              <div className="glass-panel p-8 h-full hover:border-accent transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(0,212,255,0.2)]">
-                <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${a.color} mb-6 flex items-center justify-center text-white font-bold text-xl shadow-lg`}>
-                  {a.id}
+              <div className="glass-panel p-8 h-full hover:border-accent transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(0,212,255,0.2)] flex flex-col">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${a.color} flex items-center justify-center text-white font-bold text-xl shadow-lg`}>
+                    {a.id}
+                  </div>
+                  <h2 className="text-2xl font-bold text-white group-hover:text-accent transition-colors">{a.title}</h2>
                 </div>
-                <h2 className="text-2xl font-bold mb-3 text-white group-hover:text-accent transition-colors">{a.title}</h2>
-                <p className="text-gray-400 leading-relaxed">{a.desc}</p>
+                <p className="text-gray-400 leading-relaxed mb-6 flex-grow">{a.desc}</p>
+                <div className="rounded-lg overflow-hidden shadow-lg border border-white/10 bg-black/50 aspect-video relative group-hover:border-accent/50 transition-colors">
+                  <video
+                    src={a.video}
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                </div>
               </div>
             </Link>
           ))}
