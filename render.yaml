@@ -2,6 +2,7 @@ services:
   - type: web
     name: cv-backend
     runtime: docker
+    plan: free
     rootDir: backend
     envVars:
       - key: PORT
@@ -11,6 +12,7 @@ services:
   - type: web
     name: cv-frontend
     runtime: docker
+    plan: free
     rootDir: frontend
     envVars:
       - key: NEXT_PUBLIC_API_URL
