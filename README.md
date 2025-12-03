@@ -119,23 +119,23 @@ cv-portfolio/
 
 ## Deployment
 
-### 🚀 Free Deployment Options
+### 🚀 Deploy on Render.com (FREE)
 
-This project can be deployed for **FREE** using modern cloud platforms:
+This project is configured for **free deployment** on Render.com using Blueprint:
 
-#### Recommended: Vercel + Railway
-- **Frontend**: Vercel (FREE) - Perfect for Next.js
-- **Backend**: Railway (FREE with $5/month credit) - Great for Python Flask
-- **Setup**: See `deploy-free.md` for detailed instructions
+1. **Connect your GitHub repo** to Render.com
+2. **Choose "Blueprint" deployment**
+3. **Select `render.yaml`** from the dropdown
+4. **Deploy** - both services will be created automatically!
 
-#### Alternative: Vercel + Fly.io
-- **Frontend**: Vercel (FREE)
-- **Backend**: Fly.io (FREE tier available)
-- **Best for**: Budget-conscious deployments
+### 📊 Services Created:
+- **cv-backend**: Python Flask API (Free tier)
+- **cv-frontend**: Next.js app (Free tier)
 
-### 💰 Paid Options
-- **Render.com**: $7/service/month (Blueprint deployment)
-- **Heroku**: Various paid tiers
+### 💡 Free Tier Limits:
+- **750 hours/month** (shared between services)
+- **Auto-sleep** after 15 minutes of inactivity
+- **512MB RAM** per service
 
 ## License
 

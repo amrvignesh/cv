@@ -310,7 +310,3 @@ access.log
 
 # Deployment scripts
 push_to_ghcr.sh
-
-# Render deployment files
-single-container.Dockerfile
-nextjs-migration-plan.md
