@@ -117,6 +117,26 @@ cv-portfolio/
 4. Push to the branch
 5. Open a Pull Request
 
+## Deployment
+
+### 🚀 Free Deployment Options
+
+This project can be deployed for **FREE** using modern cloud platforms:
+
+#### Recommended: Vercel + Railway
+- **Frontend**: Vercel (FREE) - Perfect for Next.js
+- **Backend**: Railway (FREE with $5/month credit) - Great for Python Flask
+- **Setup**: See `deploy-free.md` for detailed instructions
+
+#### Alternative: Vercel + Fly.io
+- **Frontend**: Vercel (FREE)
+- **Backend**: Fly.io (FREE tier available)
+- **Best for**: Budget-conscious deployments
+
+### 💰 Paid Options
+- **Render.com**: $7/service/month (Blueprint deployment)
+- **Heroku**: Various paid tiers
+
 ## License
 
 This project is licensed under the MIT License.

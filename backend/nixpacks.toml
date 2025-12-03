@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["python39", "gcc", "gfortran", "libffi", "openssl"]
+
+[phases.install]
+cmds = ["pip install -r backend/requirements.txt"]
+
+[phases.build]
+cmds = ["echo 'Python app ready'"]
+
+[start]
+cmd = "cd backend && python app.py"
