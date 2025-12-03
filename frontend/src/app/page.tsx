@@ -72,7 +72,7 @@ export default function Home() {
                   <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${a.color} flex items-center justify-center text-white font-bold text-xl shadow-lg`}>
                     {a.id}
                   </div>
-                  <h2 className="text-2xl font-bold text-white group-hover:text-accent transition-colors">{a.title}</h2>
+                  <h2 className="text-2xl font-bold group-hover:text-accent transition-colors">{a.title}</h2>
                 </div>
                 <p className="text-gray-400 leading-relaxed mb-6 flex-grow">{a.desc}</p>
                 <div className="rounded-lg overflow-hidden shadow-lg border border-white/10 bg-black/50 aspect-video relative group-hover:border-accent/50 transition-colors">

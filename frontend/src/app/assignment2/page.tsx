@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import AssignmentInfo from '../../components/AssignmentInfo';
 
 export default function Assignment2() {
     const [activeTab, setActiveTab] = useState<'match' | 'deblur'>('match');
@@ -136,6 +137,8 @@ export default function Assignment2() {
                         </button>
                     </div>
                 </header>
+
+
 
                 {activeTab === 'match' ? (
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -287,6 +290,42 @@ export default function Assignment2() {
                         </div>
                     </div>
                 )}
+
+                <AssignmentInfo
+                    title="Matching & Deblurring"
+                    description="A dual-purpose assignment exploring object detection via template matching and image restoration via frequency domain processing."
+                    features={[
+                        "Multi-scale Template Matching with Normalized Cross-Correlation (NCC)",
+                        "Rotation invariance support",
+                        "Non-Maximum Suppression (NMS) for removing duplicate detections",
+                        "Fourier Transform based deblurring (Wiener Deconvolution)",
+                        "Inverse Filtering support"
+                    ]}
+                    implementationDetails={`
+                        **Template Matching:**
+                        We slide a template image $T$ over a source image $I$ and compute a similarity metric at each position $(x,y)$.
+                        We use **Normalized Cross-Correlation (NCC)**:
+                        $R(x,y) = \\frac{\\sum (T(x',y') \\cdot I(x+x',y+y'))}{\\sqrt{\\sum T(x',y')^2 \\cdot \\sum I(x+x',y+y')^2}}$
+                        
+                        To handle scale, we resize the image at multiple steps and find the best match across all scales.
+                        
+                        **Deblurring:**
+                        We model the blurred image $G$ as the convolution of the original image $F$ and a point spread function (PSF) $H$, plus noise $N$:
+                        $G = F * H + N$
+                        
+                        In the frequency domain: $\\hat{G} = \\hat{F} \\cdot \\hat{H} + \\hat{N}$
+                        
+                        **Wiener Deconvolution** attempts to recover $\\hat{F}$ by minimizing the mean square error:
+                        $\\hat{F} = \\frac{\\hat{G}}{\\hat{H}} \\left( \\frac{|\\hat{H}|^2}{|\\hat{H}|^2 + K} \\right)$
+                        where $K$ is the signal-to-noise ratio.
+                    `}
+                    videoSrc="/recordings/a2.mov"
+                    references={[
+                        { label: "Template Matching (OpenCV)", link: "https://docs.opencv.org/4.x/d4/dc6/tutorial_py_template_matching.html" },
+                        { label: "Wiener Deconvolution (Wikipedia)", link: "https://en.wikipedia.org/wiki/Wiener_deconvolution" }
+                    ]}
+                    colorTheme="from-purple-500 to-pink-500"
+                />
             </div>
         </div>
     );

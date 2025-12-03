@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import AssignmentInfo from '../../components/AssignmentInfo';
 
 export default function Assignment4() {
     const [activeTab, setActiveTab] = useState<'stitch' | 'sift' | 'report'>('stitch');
@@ -104,6 +105,8 @@ export default function Assignment4() {
                         </button>
                     </div>
                 </header>
+
+
 
                 {activeTab === 'stitch' && (
                     <div className="card space-y-8">
@@ -231,6 +234,38 @@ export default function Assignment4() {
                         </div>
                     </div>
                 )}
+
+                <AssignmentInfo
+                    title="Panorama & SIFT"
+                    description="Feature detection, matching, and image stitching to create high-resolution panoramas."
+                    features={[
+                        "Scale-Invariant Feature Transform (SIFT) implementation",
+                        "Difference of Gaussians (DoG) for keypoint detection",
+                        "RANSAC for robust homography estimation",
+                        "Image warping and blending for seamless stitching",
+                        "Exposure compensation"
+                    ]}
+                    implementationDetails={`
+                        **SIFT (Scale-Invariant Feature Transform):**
+                        1. **Scale-space Extrema Detection:** Identify potential interest points using Difference-of-Gaussians (DoG).
+                        2. **Keypoint Localization:** Refine location and scale, removing low-contrast points.
+                        3. **Orientation Assignment:** Assign dominant orientation based on local image gradients.
+                        4. **Keypoint Descriptor:** Create a 128-dimensional vector representing the local neighborhood.
+                        
+                        **Panorama Stitching:**
+                        1. Detect SIFT features in both images.
+                        2. Match features using Nearest Neighbor Distance Ratio (NNDR).
+                        3. Estimate Homography matrix $H$ using **RANSAC** to reject outliers.
+                        4. Warp the second image using $H$ to align with the first.
+                        5. Blend overlapping regions.
+                    `}
+                    videoSrc="/recordings/a4.mov"
+                    references={[
+                        { label: "SIFT Paper (Lowe, 2004)", link: "https://www.cs.ubc.ca/~lowe/papers/ijcv04.pdf" },
+                        { label: "Homography Estimation (OpenCV)", link: "https://docs.opencv.org/4.x/d9/dab/tutorial_homography.html" }
+                    ]}
+                    colorTheme="from-orange-500 to-red-500"
+                />
             </div>
         </div>
     );

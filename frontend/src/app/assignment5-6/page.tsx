@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
 import { ObjectTracker } from './tracker';
+import AssignmentInfo from '../../components/AssignmentInfo';
 
 // Helper to get cv from window
 function getCv() {
@@ -201,6 +202,8 @@ export default function Assignment56() {
                     </div>
                 </header>
 
+
+
                 <div className="card p-0 overflow-hidden">
                     <div className="p-4 border-b border-gray-200 bg-gray-50 flex flex-wrap gap-4 items-center justify-between">
                         <div className="flex gap-4 items-center">
@@ -296,6 +299,36 @@ export default function Assignment56() {
                         </div>
                     </div>
                 </div>
+
+                <AssignmentInfo
+                    title="Real-Time Object Tracking"
+                    description="Real-time object tracking using various algorithms including marker-based tracking, optical flow, and deep learning segmentation."
+                    features={[
+                        "ArUco Marker Tracking for robust pose estimation",
+                        "Markerless tracking using Optical Flow (Lucas-Kanade)",
+                        "QR Code detection and decoding",
+                        "Integration with Segment Anything Model 2 (SAM2) for semantic segmentation"
+                    ]}
+                    implementationDetails={`
+                        **Marker Tracking:**
+                        We use the ArUco library to detect binary square markers. The 4 corners of the marker provide enough constraints to estimate the camera pose (6DoF) relative to the marker.
+                        
+                        **Markerless Tracking (Optical Flow):**
+                        We use the **Lucas-Kanade method** to track sparse feature points.
+                        Assumption: Pixel intensity remains constant between frames for small displacements.
+                        $I(x, y, t) = I(x + dx, y + dy, t + dt)$
+                        
+                        **SAM2 (Segment Anything Model 2):**
+                        A state-of-the-art foundation model for promptable visual segmentation. We load pre-computed masks or run inference to segment objects in real-time.
+                    `}
+                    videoSrc="/recordings/a5-6.mov"
+                    references={[
+                        { label: "Lucas-Kanade Method (Wikipedia)", link: "https://en.wikipedia.org/wiki/Lucas%E2%80%93Kanade_method" },
+                        { label: "ArUco Markers (OpenCV)", link: "https://docs.opencv.org/4.x/d5/dae/tutorial_aruco_detection.html" },
+                        { label: "SAM2 (Meta AI)", link: "https://ai.meta.com/sam2/" }
+                    ]}
+                    colorTheme="from-indigo-500 to-violet-500"
+                />
             </div>
         </div>
     );

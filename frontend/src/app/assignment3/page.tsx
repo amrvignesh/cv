@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import AssignmentInfo from '../../components/AssignmentInfo';
 
 export default function Assignment3() {
     const [image, setImage] = useState<File | null>(null);
@@ -73,6 +74,8 @@ export default function Assignment3() {
                     </div>
                     <button className="btn btn-secondary" disabled>Batch Export (Coming Soon)</button>
                 </header>
+
+
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Settings */}
@@ -211,6 +214,45 @@ export default function Assignment3() {
                         )}
                     </div>
                 </div>
+
+                <AssignmentInfo
+                    title="Image Analysis Suite"
+                    description="A comprehensive toolkit for fundamental computer vision operations, including edge detection, corner detection, and gradient analysis."
+                    features={[
+                        "Gradient Magnitude using Sobel operators",
+                        "Laplacian of Gaussian (LoG) for blob detection",
+                        "Canny Edge Detection with hysteresis thresholding",
+                        "Harris Corner Detection for feature extraction",
+                        "Boundary detection using morphological operations"
+                    ]}
+                    implementationDetails={`
+                        This suite implements several core algorithms:
+                        
+                        **Gradient Magnitude:**
+                        Computed using Sobel operators $G_x$ and $G_y$:
+                        $G = \\sqrt{G_x^2 + G_y^2}$
+                        
+                        **Canny Edge Detection:**
+                        1. Gaussian blur to remove noise.
+                        2. Find intensity gradients.
+                        3. Non-maximum suppression to thin edges.
+                        4. Hysteresis thresholding to connect weak edges to strong edges.
+                        
+                        **Harris Corner Detection:**
+                        We compute the structure tensor $M$ for a window $W$:
+                        $M = \\sum_{x,y \\in W} \\begin{bmatrix} I_x^2 & I_x I_y \\\\ I_x I_y & I_y^2 \\end{bmatrix}$
+                        
+                        The corner response $R$ is given by:
+                        $R = \\det(M) - k(\\text{trace}(M))^2$
+                        Large positive $R$ indicates a corner.
+                    `}
+                    videoSrc="/recordings/a3.mov"
+                    references={[
+                        { label: "Canny Edge Detector (Wikipedia)", link: "https://en.wikipedia.org/wiki/Canny_edge_detector" },
+                        { label: "Harris Corner Detector (OpenCV)", link: "https://docs.opencv.org/4.x/dc/d0d/tutorial_py_features_harris.html" }
+                    ]}
+                    colorTheme="from-green-500 to-emerald-500"
+                />
             </div>
         </div>
     );

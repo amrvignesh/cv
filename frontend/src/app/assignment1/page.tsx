@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, MouseEvent } from 'react';
 import EXIF from 'exif-js';
+import AssignmentInfo from '../../components/AssignmentInfo';
 
 const SENSOR_SIZES = [
     { name: 'Full Frame (35mm)', width: 36.0 },
@@ -304,6 +305,8 @@ export default function Assignment1() {
                     </div>
                 </header>
 
+
+
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Controls */}
                     <div className="space-y-6">
@@ -464,6 +467,38 @@ export default function Assignment1() {
                         </p>
                     </div>
                 </div>
+
+                <AssignmentInfo
+                    title="Perspective Measurement"
+                    description="Measure real-world dimensions from a single image using camera geometry and reference objects. This assignment implements the pinhole camera model to relate 2D image coordinates to 3D world measurements."
+                    features={[
+                        "Automatic EXIF metadata extraction for focal length",
+                        "Manual calibration using reference objects",
+                        "Perspective-corrected distance measurement",
+                        "Support for various sensor sizes and crop factors"
+                    ]}
+                    implementationDetails={`
+                        The core of this implementation relies on the **Pinhole Camera Model**.
+                        
+                        **Calibration:**
+                        We determine the focal length in pixels ($f_{px}$) using the relationship:
+                        $f_{px} = \\frac{d_{px} \\cdot D_{real}}{L_{real}}$
+                        where $d_{px}$ is the object size in pixels, $D_{real}$ is the distance to the object, and $L_{real}$ is the real size of the object.
+                        
+                        Alternatively, we use EXIF data:
+                        $f_{px} = \\frac{f_{mm} \\cdot W_{img}}{W_{sensor}}$
+                        
+                        **Measurement:**
+                        Once calibrated, we can compute the size of an unknown object at a known distance $D_{test}$:
+                        $L = \\frac{d_{px} \\cdot D_{test}}{f_{px}}$
+                    `}
+                    videoSrc="/recordings/a1.mov"
+                    references={[
+                        { label: "Pinhole Camera Model (Wikipedia)", link: "https://en.wikipedia.org/wiki/Pinhole_camera_model" },
+                        { label: "Camera Calibration (OpenCV)", link: "https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html" }
+                    ]}
+                    colorTheme="from-blue-500 to-cyan-500"
+                />
             </div>
         </div>
     );

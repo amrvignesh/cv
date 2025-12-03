@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import AssignmentInfo from '../../components/AssignmentInfo';
 import Script from 'next/script';
 
 export default function Assignment7() {
@@ -30,7 +31,40 @@ export default function Assignment7() {
                     </div>
                 </header>
 
+
+
                 {activeTab === 'stereo' ? <StereoMeasurement /> : <PoseTracking />}
+
+                <AssignmentInfo
+                    title="Stereo Vision & Pose Estimation"
+                    description="3D reconstruction from stereo image pairs and real-time human pose estimation using MediaPipe."
+                    features={[
+                        "Stereo Camera Calibration using chessboard patterns",
+                        "Epipolar Geometry & Triangulation for 3D depth estimation",
+                        "Real-world size measurement from stereo pairs",
+                        "Real-time Human Pose Estimation (33 landmarks)",
+                        "Hand Tracking and Gesture Recognition"
+                    ]}
+                    implementationDetails={`
+                        **Stereo Vision:**
+                        1. **Calibration:** Determine intrinsic ($K$) and extrinsic ($R, T$) parameters of the stereo rig.
+                        2. **Triangulation:** Given matching points $x_L, x_R$ in left and right images, we solve for the 3D point $X$:
+                        $x_L = P_L X, \\quad x_R = P_R X$
+                        where $P_L, P_R$ are projection matrices.
+                        
+                        **Pose Estimation (MediaPipe):**
+                        Uses a two-step detector-tracker pipeline:
+                        1. **Detector:** Locates the person/ROI in the frame.
+                        2. **Tracker:** Predicts 33 3D landmarks within the ROI.
+                        This approach is highly optimized for real-time mobile/web performance.
+                    `}
+                    videoSrc="/recordings/a7.mov"
+                    references={[
+                        { label: "Epipolar Geometry (OpenCV)", link: "https://docs.opencv.org/4.x/d9/db7/tutorial_py_table_of_contents_calib3d.html" },
+                        { label: "MediaPipe Pose", link: "https://developers.google.com/mediapipe/solutions/vision/pose_landmarker" }
+                    ]}
+                    colorTheme="from-fuchsia-500 to-rose-500"
+                />
             </div>
         </div>
     );
