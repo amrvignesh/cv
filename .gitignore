@@ -307,3 +307,10 @@ access.log
 # Local development
 .local
 .dev
+
+# Deployment scripts
+push_to_ghcr.sh
+
+# Render deployment files
+single-container.Dockerfile
+nextjs-migration-plan.md
