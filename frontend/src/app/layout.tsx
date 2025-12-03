@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: "Consolidated CV Assignments",
 };
 
+import Navigation from "../components/Navigation";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,7 +30,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        {children}
+        <Navigation />
+        <main className="pt-16">
+          {children}
+        </main>
       </body>
     </html>
   );
