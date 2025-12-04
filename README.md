@@ -38,7 +38,8 @@ A comprehensive collection of computer vision assignments featuring real-time an
 - **📁 GitHub Repository**: [github.com/amrvignesh/cv](https://github.com/amrvignesh/cv)
 - **📄 Handwritten Solutions**: [Solutions.pdf](https://github.com/amrvignesh/cv/blob/main/Solutions.pdf)
 - **📊 Evaluation Results**: Available in the Evaluation tab at [cv.mrithang.com/assignment4](https://cv.mrithang.com/assignment4)
-- **📂 Assignments Folder**: Check the [assignments/](https://github.com/amrvignesh/cv/tree/main/assignments) folder for additional resources
+- **📂 Assignment Documents**: Detailed requirements and specifications in [assignments/](https://github.com/amrvignesh/cv/tree/main/assignments) folder
+- **🎥 Demo Videos**: Watch implementation demos in [frontend/public/recordings/](https://github.com/amrvignesh/cv/tree/main/frontend/public/recordings)
 
 > **⚡ Note**: This application is hosted on **Render.com** free tier. It may take **1-2 minutes** to load initially after periods of inactivity due to auto-sleep functionality.
 
