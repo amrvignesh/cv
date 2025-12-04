@@ -1,0 +1,35 @@
+﻿CSc 8830: Computer Vision 
+Assignment 2 
+
+
+Submission in Classroom: 
+Manage all your code in a github repo for each assignment. Provide a link to the repo in the PDF document. You can choose to program in either C/C++ or Python. Submit the script with clear commenting and ReadMe documentation on top of each script to execute the script.
+Create a working demonstration of your application and record a screen-recording or a properly captured footage of the working system. 
+Upload the PDF document and video in the Google classroom submission. (copying the script in the document is not required; GitHub repo must be accessible) 
+For parts that require or ask for “solve by hand” or “show by example” methods: 
+convert your problem solving by hand into a digital format (typed or scanned only. You can use camera scanner apps) and embedded/appended into the final PDF documentation. Camera images of paper worksheets will NOT be accepted 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Object detection using Template Matching through Correlation
+1. Demonstrate detection of an object in an image using template matching using correlation method. The (cropped) image that will be used as a template must be taken from a completely different scene (i.e. do not just crop a section containing the object of interest from your image being evaluated/tested). Do the evaluation for 10 objects (can be in the same or different images). 
+
+
+Convolution and Fourier Transform
+2. Consider an image L captured by your camera of choice. Apply Gaussian Blurring filter on the image L to result in image  L_b. 
+Now, retrieve image L back from L_b using image filtering. While there are multiple ways to solve this problem, particularly, use Fourier transform in your solution.
+
+
+Implementation
+3. Implement a template matching web application that checks from a local database of 10 objects’ templates for object detection in a scene. Once detected the object boundaries/region, then blur the entire region (pixels) using a blur filter.

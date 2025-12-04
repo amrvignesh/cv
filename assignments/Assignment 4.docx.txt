@@ -1,0 +1,24 @@
+﻿CSc 8830: Computer Vision 
+
+
+Assignment 4 
+
+
+Submission in Classroom: 
+Manage all your code in a github repo for each assignment. Provide a link to the repo in the PDF document. You can choose to program in either C/C++ or Python. Submit the script with clear commenting and ReadMe documentation on top of each script to execute the script.
+Create a working demonstration of your application and record a screen-recording or a properly captured footage of the working system. 
+Upload the PDF document and video in the Google classroom submission. (copying the script in the document is not required; GitHub repo must be accessible) 
+For parts that require or ask for “solve by hand” or “show by example” methods: 
+convert your problem solving by hand into a digital format (typed or scanned only. You can use camera scanner apps) and embedded/appended into the final PDF documentation. Camera images of paper worksheets will NOT be accepted 
+
+
+ALL REFERENCES MUST BE CITED IN YOUR ASSIGNMENT REPORTS
+
+
+1. Implement the image stitching procedure on your camera of choice. Compare it with the stitched image created by your mobile device camera’s panorama feature. You are required to stitch at least 4 images (views) in the horizontal position of the camera (landscape) or 8 images in the vertical position of the camera (portrait).
+
+
+2. Implement from scratch the procedure for SIFT feature extraction. The procedure must also include RANSAC optimization. Compare your results with the open-source version of SIFT function/code.
+
+
+Note: Both these implementations must be developed to be included on the webpage.

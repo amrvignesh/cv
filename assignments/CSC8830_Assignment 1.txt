@@ -1,0 +1,18 @@
+﻿CSc 8830: Computer Vision 
+Assignment 1 
+Submission in Classroom: 
+Manage all your code in a github repo for each assignment. Provide a link to the repo in the PDF document. You can choose to program in either C/C++ or Python. Submit the script with clear commenting and ReadMe documentation on top of each script to execute the script.
+Create a working demonstration of your application and record a screen-recording or a properly captured footage of the working system. 
+Upload the PDF document and video in the Google classroom submission. (copying the script in the document is not required; GitHub repo must be accessible) 
+For parts that require or ask for “solve by hand” or “show by example” methods: 
+convert your problem solving by hand into a digital format (typed or scanned only. You can use camera scanner apps) and embedded/appended into the final PDF documentation. Camera images of paper worksheets will NOT be accepted 
+
+
+
+
+
+
+
+
+1. Write a script to find the real world dimensions (e.g. diameter of a ball, side length of a cube) of an object using perspective projection equations. Validate using an experiment where you image an object using your camera from a specific distance (choose any distance but ensure you are able to measure it accurately) between the object and camera. 
+2. Write an application – must run as a Web application on a browser and be OS agnostic – that implements the solution for problem (1) [An application that can compute real-world dimensions of an object in view]. Make justifiable assumptions (e.g. points of interest on the object can be found by clicking on the view or touching on the screen).

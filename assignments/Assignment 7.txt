@@ -1,0 +1,28 @@
+﻿CSc 8830: Computer Vision 
+
+
+Assignment 7
+
+
+Submission in Classroom: 
+Manage all your code in a github repo for each assignment. Provide a link to the repo in the PDF document. You can choose to program in either C/C++ or Python. Submit the script with clear commenting and ReadMe documentation on top of each script to execute the script.
+Create a working demonstration of your application and record a screen-recording or a properly captured footage of the working system. 
+Upload the PDF document and video in the Google classroom submission. (copying the script in the document is not required; GitHub repo must be accessible) 
+For parts that require or ask for “solve by hand” or “show by example” methods: 
+convert your problem solving by hand into a digital format (typed or scanned only. You can use camera scanner apps) and embedded/appended into the final PDF documentation. Camera images of paper worksheets will NOT be accepted 
+
+
+ALL REFERENCES MUST BE CITED IN YOUR ASSIGNMENT REPORTS
+
+
+
+
+
+
+1. Re-implement and demonstrate on your webpage, the object-size estimation method (Assignment 1) using CALIBRATED STEREO. This means that you must first estimate the distance (Z value) between the point in 3D space and camera and use that to estimate the size of an object. In this case:
+If rectangular: estimate both width and length or width and height, depending on the view
+If circular: estimate the diameter
+If any other shape: find all dimensions of the edges of the polygon in view.
+2. [NO implementation necessary. Show by-hand derivation. Typed versions NOT accepted]
+Derive the procedure for estimating the size of the object in Problem 1 using UNCALIBRATED STEREO. Show all calculations and derivations.
+3. Implement and demonstrate on your website real-time Pose Estimation and Hand Tracking. You can use OpenPose or Mediapipe or both. You are not required to classify the pose (recognition not required). The output of the pose estimation must be shown visually and also saved in a CSV data format. You must explain in your report document what each aspect of the data means.

@@ -1,0 +1,11 @@
+Reminder: No submission necessary on 23 Nov. This is the only one and final submission required for this course. Due 3 Dec 11:59pm Eastern. No extensions or changes. Note that the submission portal will close after the submission deadline. Hence kindly please make sure you have your submissions in on time and do not wait until the last minute. All the best.
+
+1. All modules must have been implemented and must be demonstrable via your website.
+
+2. If the module asks for a worksheet (derive something or solve something on paper/typed), please upload PDF only of the worksheet against your assignment in classroom. You can also choose to make it available as a link to the PDF on your website. Both are acceptable.
+
+3. All modules must be accessible via a single landing website. The website MUST be public (not local host).
+
+4. Each module to be tested must have an example video provided on the webpage. Providing a link on the webpage is fine as well or you can embed the video as well.
+
+5. Pick one module (one feature is sufficient) out of all, and provide an evaluation (pick you metric of choice) of the same across 10 different variations (either different objects or scenes or lighting conditions). Report this as a table on the website which notes the metric/result for each of the 10 variations.
